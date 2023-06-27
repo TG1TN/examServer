@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>result server</title>
+</head>
+<body>
+    <script>
+        const rollNo = prompt("enter your rollno")
+        if(rollNo){
+            const xhr = new XMLHttpRequest()
+            xhr.open('GET',`http://localhost:3030/${rollNo}`)
+            xhr.send()
+            xhr.onload = function(){
+                const result = JSON.parse(xhr.responseText)
+                if(result.hasOwnProperty("result_grade")){
+                    alert(`you scored ${result.result_grade} grade`)
+                }else{
+                    alert(`record not found`)
+                }
+            }
+        }
+    </script>
+</body>
+</html>
